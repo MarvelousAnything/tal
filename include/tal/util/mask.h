@@ -23,7 +23,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <limits.h>
-#include "include/tal/util/attributes.h"
+#include "tal/util/attributes.h"
 
 #if defined(__cplusplus)
   extern "C" {
@@ -395,7 +395,7 @@
    **************************************************************************************************/
 
   uint32_t tal_get_mask_u32(const int32_t pos, const int32_t len) {
-    return (((uint32_t)1 << pos) - 1u) << len;
+    return (((uint32_t)1 << pos) - 1U) << len;
   }
 
   uint64_t tal_get_mask_u64(const int32_t pos, const int32_t len) {

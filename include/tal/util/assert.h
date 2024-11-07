@@ -23,7 +23,7 @@
 #include <assert.h>
 #include <stdbool.h>
 #include <stdnoreturn.h>
-#include "include/tal/util/attributes.h"
+#include "tal/util/attributes.h"
 
 #if defined(__cplusplus)
   extern "C" {

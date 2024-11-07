@@ -23,8 +23,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
-#include "common/util/attribute.h"
-#include "common/util/misc.h"
+#include "tal/util/attributes.h"
+#include "tal/util/misc.h"
 
 #if defined(__cplusplus)
   extern "C" {
@@ -36,7 +36,7 @@
    * @returns (int32_t) The length of 'str' in bytes, not including the null 
    *          terminator.
    */
-  ti_fn_attr_inline inline int32_t ti_strlen(const char* str);
+  tal_fn_attr_inline int32_t tal_strlen(const char* str);
 
   /**
    * @brief Copies a string from one location to annother.
@@ -47,7 +47,7 @@
    * @warning - The destination string must be large enough to hold the source string.
    * @warning - The source and destination strings/locations must not overlap.
    */
-  ti_fn_attr_inline inline char* ti_strcpy(char* restrict dest, const char* restrict src);
+  tal_fn_attr_inline inline char* tal_strcpy(char* restrict dest, const char* restrict src);
 
   /**
    * @brief Swaps the contents of two strings.
@@ -55,7 +55,7 @@
    * @param str_r (char* restrict) The "right-hand" string.
    * @warning - The left and right-hand strings must not overlap.
    */
-  ti_fn_attr_inline inline void ti_strswap(char* restrict str_l, char* restrict str_r);
+  tal_fn_attr_inline inline void tal_strswap(char* restrict str_l, char* restrict str_r);
 
   /**
    * @brief TODO
@@ -63,7 +63,7 @@
    * @param src
    * @returns
    */
-  ti_fn_attr_inline inline char* ti_strcat(char* dest, const char* src);
+  tal_fn_attr_inline inline char* tal_strcat(char* dest, const char* src);
 
   /**
    * @brief TODO
@@ -72,7 +72,7 @@
    * @param n 
    * @return 
    */
-  ti_fn_attr_inline inline char* ti_strncat(char* dest, const char* src, int32_t n);
+  tal_fn_attr_inline inline char* tal_strncat(char* dest, const char* src, int32_t n);
 
   /**
    * @brief TODO
@@ -80,7 +80,7 @@
    * @param str_r 
    * @return 
    */
-  ti_fn_attr_inline inline int32_t ti_strcmp(const char* str_l, const char* str_r);
+  tal_fn_attr_inline inline int32_t tal_strcmp(const char* str_l, const char* str_r);
 
   /**
    * @brief TODO
@@ -89,7 +89,7 @@
    * @param n 
    * @return 
    */
-  ti_fn_attr_inline inline int32_t ti_strncmp(const char* str_l, const char* str_r, int32_t n);
+  tal_fn_attr_inline inline int32_t tal_strncmp(const char* str_l, const char* str_r, int32_t n);
   
   
   /**
@@ -98,7 +98,7 @@
    * @param qchar
    * @returns
    */
-  ti_fn_attr_inline inline char* ti_strchr(const char* str, char qchar);
+  tal_fn_attr_inline inline char* tal_strchr(const char* str, char qchar);
 
   /**
    * @brief TODO
@@ -106,7 +106,7 @@
    * @param qchar 
    * @return 
    */
-  ti_fn_attr_inline inline char* ti_strrchr(const char* str, char qchar);
+  tal_fn_attr_inline inline char* tal_strrchr(const char* str, char qchar);
 
   /**
    * @brief TODO
@@ -114,7 +114,7 @@
    * @param qchar
    * @param n
    */
-  ti_fn_attr_inline inline char* ti_strnchr(const char* str, char qchar, int32_t n);
+  tal_fn_attr_inline inline char* tal_strnchr(const char* str, char qchar, int32_t n);
 
   /**
    * @brief TODO
@@ -122,7 +122,7 @@
    * @param qstr
    * @returns
    */
-  ti_fn_attr_inline inline int32_t ti_strchr_i(const char* str, char qchar);
+  tal_fn_attr_inline inline int32_t tal_strchr_i(const char* str, char qchar);
 
   /**
    * @brief TODO
@@ -130,7 +130,7 @@
    * @param qchar
    * @returns
    */
-  ti_fn_attr_inline inline int32_t ti_strrchr_i(const char* str, char qchar);
+  tal_fn_attr_inline inline int32_t tal_strrchr_i(const char* str, char qchar);
 
   /**
    * @brief TODO
@@ -139,7 +139,7 @@
    * @param n 
    * @return 
    */
-  ti_fn_attr_inline inline int32_t ti_strnchr_i(const char* str, char qchar, int32_t n);
+  tal_fn_attr_inline inline int32_t tal_strnchr_i(const char* str, char qchar, int32_t n);
 
   /**
    * @brief TODO
@@ -147,7 +147,7 @@
    * @param qstr
    * @returns
    */
-  ti_fn_attr_inline inline int32_t ti_strspn(const char* str, const char* qstr);
+  tal_fn_attr_inline inline int32_t tal_strspn(const char* str, const char* qstr);
 
   /**
    * @brief TODO
@@ -155,7 +155,7 @@
    * @param qstr 
    * @return 
    */
-  ti_fn_attr_inline inline int32_t ti_strcspn(const char* str, const char* qstr);
+  tal_fn_attr_inline inline int32_t tal_strcspn(const char* str, const char* qstr);
 
   /**
    * @brief TODO
@@ -163,7 +163,7 @@
    * @param qstr 
    * @return 
    */
-  ti_fn_attr_inline inline char* ti_strstr(const char* str, const char* qstr);
+  tal_fn_attr_inline inline char* tal_strstr(const char* str, const char* qstr);
 
   /**
    * @brief TODO
@@ -172,7 +172,7 @@
    * @param n 
    * @return 
    */
-  ti_fn_attr_inline inline char* ti_strnstr(const char* str, const char* qstr, int32_t n);
+  tal_fn_attr_inline inline char* tal_strnstr(const char* str, const char* qstr, int32_t n);
 
   /**
    * @brief TODO
@@ -180,7 +180,7 @@
    * @param qstr
    * @returns
    */
-  ti_fn_attr_inline inline char* ti_strrstr(const char* str, const char* qstr);
+  tal_fn_attr_inline inline char* tal_strrstr(const char* str, const char* qstr);
 
   /**
    * @brief TODO
@@ -188,7 +188,7 @@
    * @param qstr 
    * @return 
    */
-  ti_fn_attr_inline inline int32_t ti_strstr_i(const char* str, const char* qstr);
+  tal_fn_attr_inline inline int32_t tal_strstr_i(const char* str, const char* qstr);
 
   /**
    * @brief TODO
@@ -196,7 +196,7 @@
    * @param qstr 
    * @return 
    */
-  ti_fn_attr_inline inline int32_t ti_strrstr_i(const char* str, const char* qstr);
+  tal_fn_attr_inline inline int32_t tal_strrstr_i(const char* str, const char* qstr);
 
   /**
    * @brief TODO
@@ -205,7 +205,7 @@
    * @param n 
    * @return 
    */
-  ti_fn_attr_inline inline int32_t ti_strnstr_i(const char* str, const char* qstr, int32_t n);
+  tal_fn_attr_inline inline int32_t tal_strnstr_i(const char* str, const char* qstr, int32_t n);
 
   /**
    * @brief TODO
@@ -213,7 +213,7 @@
    * @param qstr
    * @returns
    */
-  ti_fn_attr_inline inline char* ti_strpbrk(const char* str, const char* qstr);
+  tal_fn_attr_inline inline char* tal_strpbrk(const char* str, const char* qstr);
 
   /**
    * @brief TODO
@@ -221,7 +221,7 @@
    * @param qstr
    * @returns
    */
-  ti_fn_attr_inline inline int32_t ti_strpbrk_i(const char* str, const char* qstr);
+  tal_fn_attr_inline inline int32_t tal_strpbrk_i(const char* str, const char* qstr);
 
   /**
    * @brief TODO
@@ -229,13 +229,13 @@
    * @param delim
    * @returns
    */
-  ti_fn_attr_inline inline char* ti_strsplit(const char* str, char* tok, const char* delim);
+  tal_fn_attr_inline inline char* tal_strsplit(const char* str, char* tok, const char* delim);
 
   /**************************************************************************************************
    * @internal Implementation
    **************************************************************************************************/
 
-  char* ti_strcat (char* dest, const char* src) {
+  char* tal_strcat (char* dest, const char* src) {
     if (dest && src) {
       char* tdest = dest;
       while (*tdest) { ++tdest; }
@@ -248,7 +248,7 @@
     return dest;
   }
 
-  char* ti_strncat(char* dest, const char* src, int32_t n) {
+  char* tal_strncat(char* dest, const char* src, int32_t n) {
     if (dest && src && n > 0) {
       char* tdest = dest;
       while (*tdest) { ++tdest; }
@@ -261,7 +261,7 @@
     return dest;
   }
 
-  char* ti_strcpy(char* restrict dest, const char* restrict src) {
+  char* tal_strcpy(char* restrict dest, const char* restrict src) {
     if (dest && src) {
       char* tdest = dest;
       while (*src) {
@@ -273,7 +273,7 @@
     return dest;
   }
 
-  void ti_strswap(char* restrict str_l, char* restrict str_r) {
+  void tal_strswap(char* restrict str_l, char* restrict str_r) {
     if (str_l && str_r) {
       while (*str_l && *str_r) {
         char t_char = *str_l;
@@ -287,7 +287,7 @@
     }
   }
 
-  int32_t ti_strcmp(const char* str_l, const char* str_r) {
+  int32_t tal_strcmp(const char* str_l, const char* str_r) {
     if (!str_l || !str_r) { return 0; }
     while (*str_l == *str_r && *str_l && *str_r) {
       str_l++;
@@ -296,7 +296,7 @@
     return (int32_t)*str_l - (int32_t)*str_r;
   }
 
-  int32_t ti_strncmp(const char* str_l, const char* str_r, int32_t n) {
+  int32_t tal_strncmp(const char* str_l, const char* str_r, int32_t n) {
     if (str_l && str_r && n > 0) {
       for (int32_t i = 0; i < n; ++i) {
         if (*str_l != *str_r || !*str_l || !*str_r) { 
@@ -309,7 +309,7 @@
     return 0;
   }
 
-  char* ti_strchr(const char* str, char qchar) {
+  char* tal_strchr(const char* str, char qchar) {
     if (str) {
       while (*str != qchar) {
         if (!*str) { return NULL; }
@@ -319,7 +319,7 @@
     return (char*)str;
   }
 
-  char* ti_strrchr(const char* str, char qchar) {
+  char* tal_strrchr(const char* str, char qchar) {
     if (str) {
       const char* t_str = str;
       while (*t_str) {
@@ -331,7 +331,7 @@
     return (char*)str;
   }
 
-  char* ti_strnchr(const char* str, char qchar, int32_t n) {
+  char* tal_strnchr(const char* str, char qchar, int32_t n) {
     if (str && n > 0)  {
       int32_t count = 0;
       while (*str) {
@@ -346,19 +346,19 @@
     return NULL;
   }
 
-  int32_t ti_strchr_i(const char* str, char qchar) {
-    if (!str) { return ti_err_idx; }
+  int32_t tal_strchr_i(const char* str, char qchar) {
+    if (!str) { return tal_err_idx; }
     int32_t i = 0;
     while (*str != qchar) {
-      if (!*str) { return ti_err_idx; }
+      if (!*str) { return tal_err_idx; }
       ++str;
       ++i;
     }
     return i;
   }
 
-  int32_t ti_strrchr_i(const char* str, char qchar) {
-    int32_t ret = ti_err_idx;
+  int32_t tal_strrchr_i(const char* str, char qchar) {
+    int32_t ret = tal_err_idx;
     if (str) {
       int32_t i = 0;
       while (*str) {
@@ -371,7 +371,7 @@
     return ret;
   }
 
-  int32_t ti_strnchr_i(const char* str, char qchar, int32_t n) {
+  int32_t tal_strnchr_i(const char* str, char qchar, int32_t n) {
     if (str) {
       int32_t count = 0;
       int32_t i = 0;
@@ -385,11 +385,11 @@
       }
       if (!qchar && n == 1) { return i; }
     }
-    return ti_err_idx;
+    return tal_err_idx;
   }
 
-  int32_t ti_strspn(const char* str, const char* qstr) {
-    if (!str || !qstr) { return ti_err_idx; }
+  int32_t tal_strspn(const char* str, const char* qstr) {
+    if (!str || !qstr) { return tal_err_idx; }
     int32_t count = 0;
     while (*str) {
       const char* t_qstr = qstr;
@@ -403,8 +403,8 @@
     return count;
   }
 
-  int32_t ti_strcspn(const char* str, const char* qstr) {
-    if (!str || !qstr) { return ti_err_idx; }
+  int32_t tal_strcspn(const char* str, const char* qstr) {
+    if (!str || !qstr) { return tal_err_idx; }
     int32_t count = 0;
     while (*str) {
       const char* t_qstr = qstr;
@@ -418,7 +418,7 @@
     return count;
   }
 
-  char* ti_strstr(const char* str, const char* qstr) {
+  char* tal_strstr(const char* str, const char* qstr) {
     if (str && qstr) {
       const char* t_str = str;
       const char* t_qstr = qstr;
@@ -436,7 +436,7 @@
     return NULL;
   }
 
-  char* ti_strnstr(const char* str, const char* qstr, int32_t n) {
+  char* tal_strnstr(const char* str, const char* qstr, int32_t n) {
     if (str && qstr) {
       int32_t count = 0;
       const char* t_qstr = qstr;
@@ -456,7 +456,7 @@
     return NULL;
   }
 
-  char* ti_strrstr(const char* str, const char* qstr) {
+  char* tal_strrstr(const char* str, const char* qstr) {
     const char* lstr = NULL;
     if (str && qstr) {
       const char* t_str = str;
@@ -475,7 +475,7 @@
     return (char*)lstr;
   }
 
-  int32_t ti_strstr_i(const char* str, const char* qstr) {
+  int32_t tal_strstr_i(const char* str, const char* qstr) {
     if (str && qstr) {
       int32_t i = 0;
       const char* t_qstr = qstr;
@@ -490,11 +490,11 @@
         ++i;
       }
     }
-    return ti_err_idx;
+    return tal_err_idx;
   }
 
-  int32_t ti_strrstr_i(const char* str, const char* qstr) {
-    int32_t ret = ti_err_idx;
+  int32_t tal_strrstr_i(const char* str, const char* qstr) {
+    int32_t ret = tal_err_idx;
     if (str && qstr) {
       int32_t i = 0;
       const char* t_qstr = qstr;
@@ -512,7 +512,7 @@
     return ret;
   }
 
-  int32_t ti_strnstr_i(const char* str, const char* qstr, int32_t n) {
+  int32_t tal_strnstr_i(const char* str, const char* qstr, int32_t n) {
     if (str && qstr && n > 0) {
       int32_t i = 0;
       int32_t count = 0;
@@ -531,10 +531,10 @@
         ++i;
       }
     }
-    return ti_err_idx;
+    return tal_err_idx;
   }
 
-  char* ti_strpbrk(const char* str, const char* qstr) {
+  char* tal_strpbrk(const char* str, const char* qstr) {
     if (str && qstr) {
       while (*str) {
         const char* t_qstr = qstr;
@@ -547,7 +547,7 @@
     return NULL;
   }
 
-  int32_t ti_strpbrk_i(const char* str, const char* qstr) {
+  int32_t tal_strpbrk_i(const char* str, const char* qstr) {
     if (str && qstr) {
       int32_t i = 0;
       while (*str) {
@@ -559,16 +559,16 @@
         ++i;
       }
     }
-    return ti_err_idx;
+    return tal_err_idx;
   }
 
-  int32_t ti_strlen(const char* str) {
+  int32_t tal_strlen(const char* str) {
     int32_t len = 0;
     while (str[len]) { ++len; }
     return len;
   }
 
-  char* ti_strsplit(const char* str, char* tok, const char* delim) {
+  char* tal_strsplit(const char* str, char* tok, const char* delim) {
     if (str && tok && delim) {
       const char* t_str = str;
       const char* t_delim = delim;

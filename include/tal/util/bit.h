@@ -23,7 +23,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <limits.h>
-#include "include/tal/util/attributes.h"
+#include "tal/util/attributes.h"
 
 #if defined(__cplusplus)
   extern "C" {
@@ -365,7 +365,7 @@
     return result;
   }
 
-  #if defined(TI_ARCH_ARMV7)
+  #if defined(tal_ARCH_ARMV7)
 
     uint16_t tal_rbyte_u16(const uint16_t value) {
       uint16_t result;
@@ -551,7 +551,7 @@
   }
 
   uint32_t tal_rotr_u32(const uint32_t value, const int32_t shift) {
-    #if defined(TI_ARCH_ARMV7)
+    #if defined(tal_ARCH_ARMV7)
       uint32_t result = 0;
       asm ("ror %0, %1, %2" : "=rm" (result) : "rm" (value), "rm" (shift));
       return result;
@@ -579,7 +579,7 @@
   }
 
   int32_t tal_clz_u8(const uint8_t value) {
-    #if defined(TI_ARCH_ARMV7)
+    #if defined(tal_ARCH_ARMV7)
       const int32_t bit_diff = tal_uint32_bit_cnt__ - tal_uint8_bit_cnt__;
       return tal_clz_u32((uint32_t)value) - bit_diff;
     #else
@@ -594,7 +594,7 @@
   }
 
   int32_t tal_clz_u16(const uint16_t value) {
-    #if defined(TI_ARCH_ARMV7)
+    #if defined(tal_ARCH_ARMV7)
       const int32_t bit_diff = tal_uint32_bit_cnt__ - tal_uint16_bit_cnt__;
       return tal_clz_u32((uint32_t)value) - bit_diff;
     #else
@@ -609,7 +609,7 @@
   }
 
   int32_t tal_clz_u32(const uint32_t value) {
-    #if defined(TI_ARCH_ARMV7)
+    #if defined(tal_ARCH_ARMV7)
       int32_t result = 0;
       asm ("clz %0, %1" : "=rm" (result) : "rm" (value));
       return result;
@@ -625,7 +625,7 @@
   }
 
   int32_t tal_clz_u64(const uint64_t value) {
-    #if defined(TI_ARCH_ARMV7)
+    #if defined(tal_ARCH_ARMV7)
       const uint32_t high_w = (uint32_t)(value >> (tal_uint64_bit_cnt__ / 2));
       const int32_t high_clz = tal_clz_u32(high_w);
       if (high_clz == tal_uint32_bit_cnt__) {

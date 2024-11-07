@@ -24,7 +24,7 @@
 #endif
 
   /** @brief Value that represents the lack of a valid index. */
-  #define ti_err_idx -1 
+  #define tal_err_idx -1 
 
 #if defined(__cplusplus)
   }
