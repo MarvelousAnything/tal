@@ -152,8 +152,8 @@
    * @returns True if 'value' is greater than or equal to 'min' and less than
    *          or equal to 'max', false otherwise.
    */
-  #define ti_in_range(value, min, max) \
-      (ti_cmpge(value, min) && ti_cmple(value, max))
+  #define tal_in_range(value, min, max) \
+      (tal_cmpge(value, min) && tal_cmple(value, max))
 
   /**
    * @brief Clamps an integer value to a numeric range.
@@ -163,9 +163,9 @@
    * @returns 'min' if 'value' is less than 'min', 'max' if 'value' is greater 
    *          than 'max', or 'value' otherwise.
    */
-  #define ti_to_range(value, min, max) \
-      (ti_cmpl(value, min) ? min :     \
-      (ti_cmpg(value, max) ? max : value))
+  #define tal_to_range(value, min, max) \
+      (tal_cmpl(value, min) ? min :     \
+      (tal_cmpg(value, max) ? max : value))
 
   /**
    * @brief Determines if a value is within the range of a type.
@@ -174,16 +174,16 @@
    * @returns True if 'value' can be represented as a value of type 'type',
    *          or false otherwise.
    */
-  #define ti_in_type_range(type, value)                  \
+  #define tal_in_type_range(type, value)                  \
     (_Generic(((type){0}),                               \
-      int8_t: ti_in_range(value, INT8_MIN, INT8_MAX),    \
-      int16_t: ti_in_range(value, INT16_MIN, INT16_MAX), \
-      int32_t: ti_in_range(value, INT32_MIN, INT32_MAX), \
-      int64_t: ti_in_range(value, INT64_MIN, INT64_MAX), \
-      uint8_t: ti_in_range(value, 0, UINT8_MAX),         \
-      uint16_t: ti_in_range(value, 0, UINT16_MAX),       \
-      uint32_t: ti_in_range(value, 0, UINT32_MAX),       \
-      uint64_t: ti_in_range(value, 0, UINT64_MAX)        \
+      int8_t: tal_in_range(value, INT8_MIN, INT8_MAX),    \
+      int16_t: tal_in_range(value, INT16_MIN, INT16_MAX), \
+      int32_t: tal_in_range(value, INT32_MIN, INT32_MAX), \
+      int64_t: tal_in_range(value, INT64_MIN, INT64_MAX), \
+      uint8_t: tal_in_range(value, 0, UINT8_MAX),         \
+      uint16_t: tal_in_range(value, 0, UINT16_MAX),       \
+      uint32_t: tal_in_range(value, 0, UINT32_MAX),       \
+      uint64_t: tal_in_range(value, 0, UINT64_MAX)        \
     ))
 
   /**
@@ -193,16 +193,16 @@
    * @returns The nearest value to 'value' that can be represented within the
    *          range of type 'type'.
    */
-  #define ti_to_type_range(type, value)                  \
+  #define tal_to_type_range(type, value)                  \
     (_Generic(((type){0})                                \
-      int8_t: ti_to_range(value, INT8_MIN, INT8_MAX),    \
-      int16_t: ti_to_range(value, INT16_MIN, INT16_MAX), \
-      int32_t: ti_to_range(value, INT32_MIN, INT32_MAX), \
-      int64_t: ti_to_range(value, INT64_MIN, INT64_MAX), \
-      uint8_t: ti_to_range(value, 0, UINT8_MAX),         \
-      uint16_t: ti_to_range(value, 0, UINT16_MAX),       \
-      uint32_t: ti_to_range(value, 0, UINT32_MAX),       \
-      uint64_t: ti_to_range(value, 0, UINT64_MAX)        \
+      int8_t: tal_to_range(value, INT8_MIN, INT8_MAX),    \
+      int16_t: tal_to_range(value, INT16_MIN, INT16_MAX), \
+      int32_t: tal_to_range(value, INT32_MIN, INT32_MAX), \
+      int64_t: tal_to_range(value, INT64_MIN, INT64_MAX), \
+      uint8_t: tal_to_range(value, 0, UINT8_MAX),         \
+      uint16_t: tal_to_range(value, 0, UINT16_MAX),       \
+      uint32_t: tal_to_range(value, 0, UINT32_MAX),       \
+      uint64_t: tal_to_range(value, 0, UINT64_MAX)        \
     ))
 
   /**
@@ -210,7 +210,7 @@
    * @param type (typename) The type to query.
    * @returns The maximum value of 'type'.
    */
-  #define ti_tmax(type)       \
+  #define tal_tmax(type)       \
     (_Generic(((type){0}),    \
       int8_t: (INT8_MAX),     \
       int16_t: (INT16_MAX),   \
@@ -227,7 +227,7 @@
    * @param type (typename) The type to query.
    * @returns The minimum value of 'type'.
    */
-  #define ti_tmin(type)     \
+  #define tal_tmin(type)     \
     (_Generic(((type){0}),  \
       int8_t: (INT8_MIN),   \
       int16_t: (INT16_MIN), \
@@ -252,8 +252,8 @@
    * @returns True if the sum of 'a' and 'b' can be assigned to 'type' without
    *          overflow occurring, or false otherwise.
    */
-  #define ti_can_add(type, a, b) ((b > 0) ? \
-      (a <= ti_tmax(type) - b) : (a >= ti_tmin(type) - b))
+  #define tal_can_add(type, a, b) ((b > 0) ? \
+      (a <= tal_tmax(type) - b) : (a >= tal_tmin(type) - b))
 
   /**
    * @brief Determines if two integers can be subtracted from each other and
@@ -264,8 +264,8 @@
    * @returns True if the difference of 'a' and 'b' can be assigned to 'type'
    *          without overflow occurring, or false otherwise.
    */
-  #define ti_can_sub(type, a, b) ((b < 0) ? \
-      (a <= ti_tmax(type) + b) : (a >= ti_tmin(type) + b))
+  #define tal_can_sub(type, a, b) ((b < 0) ? \
+      (a <= tal_tmax(type) + b) : (a >= tal_tmin(type) + b))
 
   /**
    * @brief Determines if two integers can be multiplied together and assigned
@@ -276,9 +276,9 @@
    * @returns True if the product of 'a' and 'b' can be assigned to 'type'
    *          without overflow occurring, or false otherwise.
    */
-  #define ti_can_mul(type, a, b) (b == 0 ||                 \
-      (a > ti_tmax(type) / b) || (a < ti_tmin(type) / b) || \
-      (a == -1 && b == ti_tmin(type)) || (b == -1 && a == ti_tmin(type)))
+  #define tal_can_mul(type, a, b) (b == 0 ||                 \
+      (a > tal_tmax(type) / b) || (a < tal_tmin(type) / b) || \
+      (a == -1 && b == tal_tmin(type)) || (b == -1 && a == tal_tmin(type)))
 
   /**
    * @brief Adds two integers, and saturates the result if an overflow occurs.
@@ -291,9 +291,9 @@
    *          an underflow occurs.
    * @note - If an overflow or underflow occurs, 'sat_flag' will be set to true.
    */
-  #define ti_sadd(type, a, b, sat_flag) ((b > 0) ?                                      \
-      ((a > ti_tmax(type) - b) ? ti_sflag__(sat_flag), ti_tmax(type) : (type)(a + b)) : \
-      ((a < ti_tmin(type) - b) ? ti_sflag__(sat_flag), ti_tmin(type) : (type)(a + b)))
+  #define tal_sadd(type, a, b, sat_flag) ((b > 0) ?                                      \
+      ((a > tal_tmax(type) - b) ? tal_sflag__(sat_flag), tal_tmax(type) : (type)(a + b)) : \
+      ((a < tal_tmin(type) - b) ? tal_sflag__(sat_flag), tal_tmin(type) : (type)(a + b)))
 
   /**
    * @brief Subtracts two integers, and saturates the result if an overflow occurs.
@@ -306,9 +306,9 @@
    *          an underflow occurs.
    * @note - If an overflow or underflow occurs, 'sat_flag' will be set to true.
    */
-  #define ti_ssub(a, b, sat_flag) ((b < 0) ?                                      \
-      ((a > ti_tmax(type) + b) ? ti_sflag__(sat_flag), ti_tmax(type) : (a - b)) : \
-      ((a < ti_tmin(type) + b) ? ti_sflag__(sat_flag), ti_tmin(type) : (a - b)))
+  #define tal_ssub(a, b, sat_flag) ((b < 0) ?                                      \
+      ((a > tal_tmax(type) + b) ? tal_sflag__(sat_flag), tal_tmax(type) : (a - b)) : \
+      ((a < tal_tmin(type) + b) ? tal_sflag__(sat_flag), tal_tmin(type) : (a - b)))
 
   /**
    * @brief Multiplies two integers, and saturates the result if an overflow occurs.
@@ -321,11 +321,11 @@
    *          an underflow occurs.
    * @note - If an overflow or underflow occurs, 'sat_flag' will be set to true.
    */
-  #define ti_smul(a, b, sat_flag) ((b == 0) ? 0 :                                  \
-      ((a == -1 && b == ti_tmin(type)) ? (ti_sflag__(sat_flag), ti_tmax(type)) :   \
-      ((b == -1 && a == ti_tmin(type)) ? (ti_sflag__(sat_flag), ti_tmax(type)) :   \
-      ((b != 0 && a > ti_tmax(type) / b) ? (ti_sflag__(sat_flag), ti_tmax(type)) : \
-      ((b != 0 && a < ti_tmin(type) / b) ? (ti_sflag__(sat_flag), ti_tmin(type)) : \
+  #define tal_smul(a, b, sat_flag) ((b == 0) ? 0 :                                  \
+      ((a == -1 && b == tal_tmin(type)) ? (tal_sflag__(sat_flag), tal_tmax(type)) :   \
+      ((b == -1 && a == tal_tmin(type)) ? (tal_sflag__(sat_flag), tal_tmax(type)) :   \
+      ((b != 0 && a > tal_tmax(type) / b) ? (tal_sflag__(sat_flag), tal_tmax(type)) : \
+      ((b != 0 && a < tal_tmin(type) / b) ? (tal_sflag__(sat_flag), tal_tmin(type)) : \
       (a * b))))))
 
 #if defined(__cplusplus)

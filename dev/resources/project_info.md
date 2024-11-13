@@ -16,7 +16,7 @@
   - Name types using snake_case_t.
   - Name functions using snake_case.
   - Name variables using snake_case.
-  - All externally visible names should have the prefix "ti_".
+  - All externally visible names should have the prefix "tal_".
   - No space between function names and argument lists -> my_fn(args...)
   - Add a spaces between control statement keywords and condition expressions
     -> if ()... while ()... for ()...
@@ -63,4 +63,4 @@
   - Functions should rarely be longer then ~80 lines.
   - All variables should be declared const unless there is a good reason for 
     them not to be.
-  - Max of 1 prefix (in addition to ti_) for type/function/variable names.
+  - Max of 1 prefix (in addition to tal_) for type/function/variable names.

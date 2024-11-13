@@ -36,12 +36,12 @@
  * Doc Page 2047 for an overview
  * @return if enable succeeded.
  */
-bool ti_IWDG_enable();
+bool tal_IWDG_enable();
 
 /**
  * Resets the countdown so the board doesn't reset
  */
-void ti_IWDG_reset_timer();
+void tal_IWDG_reset_timer();
 
 
 volatile int32_t* IWDG_Base = (int32_t*)1476413440; // hex 0x58004800
@@ -69,25 +69,25 @@ int32_t RESET_COUNT = 4000; // any 12 bit number
  * Note that with PRESCALER_DIVIDER = 0 it is not possible to make one second delay, because 8000 > 4095
  */
 
-bool ti_IWDG_enable()
+bool tal_IWDG_enable()
 {
-    ti_write_mask32(IWDG_START, IWDG_Base + IWDG_KR_OFFSET, 0, 16);
+    tal_write_mask32(IWDG_START, IWDG_Base + IWDG_KR_OFFSET, 0, 16);
 
     // todo check
-    ti_write_mask32(REG_ACCESS, IWDG_Base + IWDG_KR_OFFSET, 0, 16); 
+    tal_write_mask32(REG_ACCESS, IWDG_Base + IWDG_KR_OFFSET, 0, 16); 
     // I feel like this would overwrite the previous call, but it is what the documentation says to do
 
-    ti_write_mask32(PRESCALER_DIVIDER, IWDG_Base + IWDG_PR_OFFSET, 0, 3); 
-    ti_write_mask32(RESET_COUNT, IWDG_Base + IWDG_RLR_OFFSET, 0, 12);
+    tal_write_mask32(PRESCALER_DIVIDER, IWDG_Base + IWDG_PR_OFFSET, 0, 3); 
+    tal_write_mask32(RESET_COUNT, IWDG_Base + IWDG_RLR_OFFSET, 0, 12);
 
 
     // Wait for SR to be zeroed? says in doc but idk
     return 1;
 }
 
-void ti_IWDG_reset_timer()
+void tal_IWDG_reset_timer()
 {
-    ti_write_mask32(RESET_RLR, IWDG_Base + IWDG_KR_OFFSET, 0, 16); 
+    tal_write_mask32(RESET_RLR, IWDG_Base + IWDG_KR_OFFSET, 0, 16); 
 }
 
 #if defined(__cplusplus)
