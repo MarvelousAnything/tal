@@ -22,7 +22,7 @@
 
 #pragma once
 #include <stdint.h>
-#include "include/tal/attributes.h"
+#include "tal/attributes.h"
 
 #if defined(__cplusplus)
   extern "C" {
@@ -188,13 +188,13 @@
     void (*memmanage_handler)(void);
     void (*busfault_handler)(void);
     void (*usagefault_handler)(void);
-    uint32_t reserved;
-    uint32_t reserved;
-    uint32_t reserved;
-    uint32_t reserved;
+    uint32_t reserved0;
+    uint32_t reserved1;
+    uint32_t reserved2;
+    uint32_t reserved3;
     void (*svc_handler)(void);
     void (*debug_handler)(void);
-    uint32_t reserved;
+    uint32_t reserved4;
     void (*pendsv_handler)(void);
     void (*systick_handler)(void);
     void (*irq_handler_array[vtable_irq_count])(void);
@@ -211,13 +211,13 @@
     .memmanage_handler = &memmanage_handler,
     .busfault_handler = &busfault_handler,
     .usagefault_handler = &usagefault_handler,
-    .reserved = 0,
-    .reserved = 0,
-    .reserved = 0,
-    .reserved = 0,
+    .reserved0 = 0,
+    .reserved1 = 0,
+    .reserved2 = 0,
+    .reserved3 = 0,
     .svc_handler = &svc_handler,
     .debug_handler = &debug_handler,
-    .reserved = 0,
+    .reserved4 = 0,
     .pendsv_handler = &pendsv_handler,
     .systick_handler = &systick_handler,
     .irq_handler_array = {

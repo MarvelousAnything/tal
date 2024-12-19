@@ -22,10 +22,8 @@
 #pragma once
 #include <stdint.h>
 #include <stdbool.h>
-#include <stddef.h>
-#include <string.h>
 
-#include "include/tal/util/mask.h"
+#include "tal/mask.h"
 
 #if defined(__cplusplus)
   extern "C" {
@@ -44,7 +42,7 @@ bool tal_IWDG_enable();
 void tal_IWDG_reset_timer();
 
 
-volatile int32_t* IWDG_Base = (int32_t*)1476413440; // hex 0x58004800
+volatile int32_t* IWDG_Base = (int32_t*)0x58004800; // hex 0x58004800
 
 int32_t IWDG_KR_OFFSET =  0; // doc page 2050
 int32_t IWDG_PR_OFFSET =  4; // doc page 2051
@@ -71,14 +69,14 @@ int32_t RESET_COUNT = 4000; // any 12 bit number
 
 bool tal_IWDG_enable()
 {
-    tal_write_mask32(IWDG_START, IWDG_Base + IWDG_KR_OFFSET, 0, 16);
+    tal_write_mask_u32(IWDG_START, IWDG_Base + IWDG_KR_OFFSET, 0, 16);
 
     // todo check
-    tal_write_mask32(REG_ACCESS, IWDG_Base + IWDG_KR_OFFSET, 0, 16); 
+    tal_write_mask_u32(REG_ACCESS, IWDG_Base + IWDG_KR_OFFSET, 0, 16); 
     // I feel like this would overwrite the previous call, but it is what the documentation says to do
 
-    tal_write_mask32(PRESCALER_DIVIDER, IWDG_Base + IWDG_PR_OFFSET, 0, 3); 
-    tal_write_mask32(RESET_COUNT, IWDG_Base + IWDG_RLR_OFFSET, 0, 12);
+    tal_write_mask_u32(PRESCALER_DIVIDER, IWDG_Base + IWDG_PR_OFFSET, 0, 3); 
+    tal_write_mask_u32(RESET_COUNT, IWDG_Base + IWDG_RLR_OFFSET, 0, 12);
 
 
     // Wait for SR to be zeroed? says in doc but idk
@@ -87,7 +85,7 @@ bool tal_IWDG_enable()
 
 void tal_IWDG_reset_timer()
 {
-    tal_write_mask32(RESET_RLR, IWDG_Base + IWDG_KR_OFFSET, 0, 16); 
+    tal_write_mask_u32(RESET_RLR, IWDG_Base + IWDG_KR_OFFSET, 0, 16); 
 }
 
 #if defined(__cplusplus)

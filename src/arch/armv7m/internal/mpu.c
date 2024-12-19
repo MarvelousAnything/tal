@@ -19,10 +19,10 @@
  * @brief Implementation of Memory Protection Unit (MPU) management facilities.
  */
 
-#include "src/arch/armv7m/internal/mpu.h"
-#include "include/tal/mask.h"
-#include "include/tal/bit.h"
-#include "include/tal/numeric.h"
+#include "arch/armv7m/internal/mpu.h"
+#include "tal/mask.h"
+#include "tal/bit.h"
+#include "tal/numeric.h"
 
 #if defined(__cplusplus)
   extern "C" {
@@ -147,7 +147,7 @@
   }tex_scb_ref_t; 
 
   #define tex_scb_ref_len (sizeof(tex_scb_ref_t) / sizeof(tex_scb_ref_t[0]))
-  static const tex_scb_ref_t tex_scb_ref[10] = {
+  static const tex_scb_ref_t tex_scb_ref[11] = {
     {.tex_scb_value = 0b000100, .type = {
         .mem_type = mpu_mem_strongly_ordered, 
         .cache_policy = mpu_cache_disabled, 
@@ -386,7 +386,7 @@
           tex_scb_ref[i].type.cache_policy == type.cache_policy && 
           tex_scb_ref[i].type.shared == type.shared) {
         *mpu_rnr_reg = (uint8_t)index;
-        tal_write_mask_u32_v(tex_scb_ref[i].tex_scb_value, 
+        tal_write_mask_u32v(tex_scb_ref[i].tex_scb_value, 
             mpu_rasr_reg, tex_scb_pos, tex_scb_len);
         return true;
       }

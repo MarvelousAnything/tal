@@ -19,11 +19,11 @@
  * @brief Implementation of systick management facilities.
  */
 
-#include "src/arch/armv7m/internal/systick.h"
-#include "src/arch/armv7m/internal/tmp.h"
-#include "include/tal/mask.h"
-#include "include/tal/bit.h"
-#include "include/tal/numeric.h"
+#include "arch/armv7m/internal/systick.h"
+#include "arch/armv7m/internal/tmp.h"
+#include "tal/mask.h"
+#include "tal/bit.h"
+#include "tal/numeric.h"
 
 #if defined(__cplusplus)
   extern "C" {
@@ -104,8 +104,8 @@
       tal_set_mask_u32v(csr_reg, tickint_pos, tickint_len);
       tal_set_mask_u32v(csr_reg, clksrc_pos, clksrc_len);
     } else {
-      tal_clr_mask_u32v(csr_reg, ticken_pos, ticken_len);
-      tal_clr_mask_u32v(csr_reg, tickint_pos, tickint_len);
+      tal_clear_mask_u32v(csr_reg, ticken_pos, ticken_len);
+      tal_clear_mask_u32v(csr_reg, tickint_pos, tickint_len);
     }
   }
 
@@ -156,7 +156,7 @@
     if (priority < 0 || tal_bit_width_u32((uint32_t)priority) > pri_15_len) {
       return false;
     }
-    tal_write_mask((uint32_t)priority, shpr3_reg, pri_15_pos, pri_15_len);
+    tal_write_mask_u32((uint32_t)priority, shpr3_reg, pri_15_pos, pri_15_len);
     return true;
   }
 

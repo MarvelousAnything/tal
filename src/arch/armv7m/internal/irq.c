@@ -19,11 +19,11 @@
  * @brief Implementation of IRQ management facilities.
  */
 
-#include "src/arch/armv7m/internal/irq.h"
-#include "src/arch/armv7m/internal/vtable.h"
-#include "include/tal/mask.h"
-#include "include/tal/bit.h"
-#include "include/tal/numeric.h"
+#include "arch/armv7m/internal/irq.h"
+#include "arch/armv7m/internal/vtable.h"
+#include "tal/mask.h"
+#include "tal/bit.h"
+#include "tal/numeric.h"
 
 #if defined(__cplusplus)
   extern "C" {

@@ -23,8 +23,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <limits.h>
-#include "include/tal/attributes.h"
-#include "include/tal/assert.h"
+#include "tal/attributes.h"
+#include "tal/assert.h"
 
 #if defined(__cplusplus)
   extern "C" {
